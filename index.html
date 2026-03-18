@@ -19,8 +19,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./resurse/imagini/favicon/apple-touch-icon.png">
     <link rel="manifest" href="./resurse/imagini/favicon/site.webmanifest">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="./resurse/css/general.css" type="text/css">
     <link rel="stylesheet" href="./resurse/css/nav.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body id="top">
@@ -64,11 +71,13 @@
         </nav>
     </header>
 
-    <main>
-        <section id="despre-noi">
+    <main id="grid-pagina">
+        <section id="prezentare">
             <hgroup>
-                <h2>Bine ați venit la Magazinul Teo Pescarul</h2>
-                <p>Locul unde calitatea întâlnește performanța în pescuitul la pesti răpitori.</p>
+                <h2> <i class="fa-solid fa-fish-fins fa-bounce"></i> Bine ați venit la Magazinul Teo Pescarul</h2>
+                <p>
+                    Locul unde calitatea întâlnește performanța în pescuitul la pesti răpitori.
+                </p>
             </hgroup>
 
             <article>
@@ -85,6 +94,114 @@
                     frumoase. ~ Intro al emisiunii Natura si Aventura, inspirat din scrierile lui Ionel Pop"
                 </blockquote>
             </article>
+        </section>
+
+        <section id="sectiune-tabel">
+            <table border="1">
+                <caption>Orar și Prezență Consultanți Magazin Teo Pescarul</caption>
+                <thead>
+                    <tr>
+                        <th>Ziua</th>
+                        <th>Interval Orar</th>
+                        <th>Consultant</th>
+                        <th>Specializare</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2">Luni - Marți</td>
+                        <td>09:00 - 14:00</td>
+                        <td>Andrei P.</td>
+                        <td>Spinning / Năluci</td>
+                    </tr>
+                    <tr>
+                        <td>14:00 - 18:00</td>
+                        <td>Mihai D.</td>
+                        <td>Casting / Mulinete</td>
+                    </tr>
+                    <tr>
+                        <td>Miercuri</td>
+                        <td>09:00 - 18:00</td>
+                        <td>Teo D.</td>
+                        <td>Service Mulinete</td>
+                    </tr>
+                    <tr>
+                        <td>Joi - Vineri</td>
+                        <td>09:00 - 17:00</td>
+                        <td>Andrei P.</td>
+                        <td>Lansete de finețe</td>
+                    </tr>
+                    <tr>
+                        <td>Sâmbătă</td>
+                        <td>09:00 - 14:00</td>
+                        <td>Mihai D.</td>
+                        <td>Echipamente nautice</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">Duminica magazinul este închis. Vă așteptăm online pe TeoPescarul.ro!</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <section id="evenimente">
+            <h2>Evenimente și Concursuri</h2>
+            <ul>
+                <li><time datetime="2025-04-15T08:00">15 Aprilie, ora 08:00</time> - <b>Cupa Bibanul de Aur</b>:
+                    Concurs
+                    amical pe Lacul Morii.</li>
+                <li><time datetime="2025-05-01T10:00">1 Mai, ora 10:00</time> - <b>Testare Lansete</b>: Vino să
+                    testezi
+                    noile <b>lansete</b> de <b>spinning</b> din carbon.</li>
+                <li><time datetime="2025-06-10T09:00">10 Iunie, ora 09:00</time> - <b>Lansare Mulinete Noi</b>:
+                    Prezentare echipamente de casting.</li>
+            </ul>
+        </section>
+
+        <section id="anunturi">
+            <h3>Anunțuri Importante</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas id sem nec est accumsan vehicula quis
+                non mi. Sed nulla libero, viverra at sollicitudin aliquet, scelerisque a tortor. Donec erat felis,
+                malesuada id nisi eu, rutrum iaculis orci. Vivamus ac mattis enim, eget mattis lectus. Orci varius
+                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc in mollis libero, vel
+                pharetra magna. </p>
+            <p> Morbi volutpat lacinia molestie. Morbi nec consequat metus, sit amet tincidunt neque. Interdum et
+                malesuada fames ac ante ipsum primis in faucibus. Donec interdum malesuada molestie. Sed vitae augue
+                convallis, bibendum augue et, vulputate nibh. Class aptent taciti sociosqu ad litora torquent per
+                conubia nostra, per inceptos himenaeos. Pellentesque eget augue ut odio semper consectetur. </p>
+
+        </section>
+
+        <section id="utilizatori-online">
+            <h3>Utilizatori Online</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur, velit at dictum ultrices,
+                massa metus placerat eros, tempus suscipit tellus orci nec eros. Nunc sed ex lectus. Nunc id rutrum
+                lectus, a facilisis.</p>
+        </section>
+
+        <section id="statistici-utilizator">
+            <h3>Statisticile Tale</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit amet nisl sagittis, condimentum
+                enim ac, semper eros. Pellentesque augue nulla, dignissim eget dolor sit amet, mollis bibendum nisi.
+                Fusce sagittis erat vitae nisi suscipit, a efficitur nisi luctus. Nulla aliquet, arcu ac condimentum
+                laoreet, urna felis vestibulum sem, in mollis eros erat eget erat. Mauris ut finibus massa, bibendum
+                pharetra ex. Ut in dapibus ante. Sed in eros venenatis, tincidunt eros vitae, fermentum turpis. Maecenas
+                convallis velit et mi porttitor consectetur. Pellentesque quis nisi arcu. Pellentesque habitant morbi
+                tristique senectus et netus et malesuada fames ac turpis egestas. Fusce sit amet mollis nibh, ut
+                ullamcorper risus. Phasellus facilisis blandit quam eleifend viverra. Integer in tempor libero.</p>
+        </section>
+
+        <section id="date-server">
+            <h3>Status Server</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed interdum orci sit amet neque suscipit
+                tincidunt. Curabitur tincidunt magna sit amet ex molestie, vitae ornare sapien sollicitudin. Curabitur
+                varius nisi ex, ac cursus lacus facilisis in. Etiam non vestibulum purus. Sed aliquam dui eget congue
+                blandit. Praesent aliquam sit amet orci non convallis. Donec tempor augue.</p>
+        </section>
+
+        <div id="continut-divers">
 
             <section id="bonus-harta">
                 <h3>Cei mai buni pescari folosesc cele mai bune echipamente</h3>
@@ -95,29 +212,15 @@
                     width="600">
 
                 <map name="pescar-map">
-                    <area shape="circle" coords="400, 75, 55" href="./resurse/imagini/naluca_map.jpg" alt="Naluca"
+                    <area shape="circle" coords="400,75,55" href="./resurse/imagini/naluca_map.jpg" alt="Naluca"
                         title="Vezi Naluca" target="_blank">
 
-                    <area shape="circle" coords="230, 280, 55" href="./resurse/imagini/mulineta_map.jpg" alt="Mulineta"
+                    <area shape="circle" coords="230,280,55" href="./resurse/imagini/mulineta_map.jpg" alt="Mulineta"
                         title="Vezi Mulineta" target="_blank">
 
-                    <area shape="circle" coords="90, 280, 55" href="./resurse/imagini/lanseta_map.jpg" alt="Lanseta"
+                    <area shape="circle" coords="90,280,55" href="./resurse/imagini/lanseta_map.jpg" alt="Lanseta"
                         title="Vezi Lanseta" target="_blank">
                 </map>
-            </section>
-
-            <section id="evenimente">
-                <h2>Evenimente și Concursuri</h2>
-                <ul>
-                    <li><time datetime="2025-04-15T08:00">15 Aprilie, ora 08:00</time> - <b>Cupa Bibanul de Aur</b>:
-                        Concurs
-                        amical pe Lacul Morii.</li>
-                    <li><time datetime="2025-05-01T10:00">1 Mai, ora 10:00</time> - <b>Testare Lansete</b>: Vino să
-                        testezi
-                        noile <b>lansete</b> de <b>spinning</b> din carbon.</li>
-                    <li><time datetime="2025-06-10T09:00">10 Iunie, ora 09:00</time> - <b>Lansare Mulinete Noi</b>:
-                        Prezentare echipamente de casting.</li>
-                </ul>
             </section>
 
             <section id="echipamente">
@@ -145,27 +248,28 @@
                 <p>Mare atentie la perioadele deprohibitie de anul acesta: <a href="./resurse/imagini/prohibitie.png"
                         download="prohibitie2026.png">Perioadele de prohibitie 2026 (Imagine)</a>.</p>
             </section>
-
             <section id="video-utile">
                 <h2>Materiale video realizate de expertul nostru Teo</h2>
-                <div>
-                    <a href="https://www.youtube.com/embed/NWbM_pMqUW0" target="ifr-video">Pescuit in Irlanda 2025</a> |
-                    <a href="https://www.youtube.com/embed/UjGJzryHf6I" target="ifr-video">Pescuit la cernavoda (test
-                        lanseta Pontoon21 GAD Harrier)</a> |
-                    <a href="https://www.youtube.com/embed/rVuoe97uH8o" target="ifr-video">Emisiune Natura si
-                        Aventura</a>
-                </div>
-                <br>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/NWbM_pMqUW0" name="ifr-video"
-                    title="YouTube video player" allowfullscreen></iframe>
 
+                <div class="container-iframe">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/NWbM_pMqUW0" name="ifr-video"
+                        title="YouTube video player" allowfullscreen></iframe>
+
+                    <div class="taburi-iframe">
+                        <a href="https://www.youtube.com/embed/NWbM_pMqUW0" target="ifr-video">Pescuit în Irlanda
+                            2025</a>
+                        <a href="https://www.youtube.com/embed/UjGJzryHf6I" target="ifr-video">Pescuit la Cernavodă</a>
+                        <a href="https://www.youtube.com/embed/rVuoe97uH8o" target="ifr-video">Natura și Aventura</a>
+                    </div>
+                </div>
+
+                <br>
                 <h3>Bonus: Ponturi de pescuit de la campionul A Sava - Playlist</h3>
                 <iframe width="560" height="315"
                     src="https://www.youtube.com/embed/jPZWJK_X0NM?playlist=jPZWJK_X0NM,7IS95VXN7eY,begYYox_9gs&autoplay=1&loop=1&mute=1"
                     title="Playlist Andrei Sava" allowfullscreen>
                 </iframe>
             </section>
-
             <section id="informatii-utile">
                 <h2>Întrebări Frecvente (FAQ)</h2>
 
@@ -180,7 +284,8 @@
                     <summary>Ce năluci recomandați pentru știucă?</summary>
                     <p>Pentru știucă, considerată cea mai vicleană dintre răpitori, recomandăm voblerele de tip
                         <i>jerkbait</i> și oscilantele mari, culori naturale pe apă limpede și culori stridente pe apă
-                        tulbure.</p>
+                        tulbure.
+                    </p>
                 </details>
 
                 <details>
@@ -224,8 +329,8 @@
                 </math>
                 <p><small>*Unde k este factorul de șoc (accelerația peștelui), iar α este coeficientul de absorbție al
                         lansetei.</small></p>
-
             </section>
+        </div>
     </main>
 
     <footer>
@@ -239,7 +344,7 @@
                 de Facebook</a><br>
             Instagram: <a href="https://www.instagram.com/teo_1947_?igsh=NWZzMGw1NnltY3R2" target="_blank">Urmărește-ne
                 pe Instagram</a><br>
-            Adresă: <a
+            <i class="fa-solid fa-map-location-dot"></i> Adresă: <a
                 href="https://www.google.com/maps/search/?api=1&query=Facultatea+de+Matematica+si+Informatica+Bucuresti"
                 target="_blank">Facultatea de Matematică și Informatică,<br>Strada Academiei 14, București</a>
         </address>
@@ -255,7 +360,10 @@
             <small>Copyright © Magazinul Teo Pescarul. Creat la data de: <time datetime="2026-03-01">1 Martie
                     2026</time>.</small>
         </p>
-
+        <a href="#top" id="link-top" title="Sari la începutul paginii pentru navigare">
+            <div id="cerc-rotire"></div>
+            <span id="sageata-top">&#8593;</span>
+        </a>
         <p><a href="#top">Înapoi la începutul paginii</a></p>
     </footer>
 </body>

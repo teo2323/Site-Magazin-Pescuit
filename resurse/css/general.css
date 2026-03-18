@@ -1,106 +1,406 @@
+html {
+    font-size: 18px;
+    transition: font-size 0.5s linear;
+}
 
-body{
-    --culoare-fundal : pink;
-    --culoare-background: darksalmon;
-    --margine-pagina: 100px;
-    --culoare-contur:black; 
+@media screen and (max-width: 1200px) {
+    html {
+        font-size: 17px;
+    }
+}
 
-    background-color: var(--culoare-background);
+@media screen and (max-width: 700px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+
+    --clr-background: #4CABE6;
+    --clr-text: #000000;
+    --clr-border: #4C7AE6;
+    --clr-highlight: #4DDCE6;
+    --clr-accent: #4CE6BC;
+    --clr-nature: #4CE689;
+
+
+    --margine-laterala: 100px;
+
+
+    --grid-gap: 20px;
+
+
+    --zona-padding: 25px;
+
+    background-color: var(--clr-background);
+    color: var(--clr-text);
+    font-family: 'Open Sans', sans-serif;
+
+    margin: 0;
 }
 
 
-p{
-    border: 1px solid var(--culoare-background)
+header,
+footer {
+    margin: 20px var(--margine-laterala);
+    padding: var(--zona-padding);
+
+    background-color: var(--clr-accent);
+    border: 2px solid var(--clr-border);
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-main{
-    margin-left: var(--margine-pagina);
-    margin-right: var(--margine-pagina);
-}
-figure{
-    margin:0;
+main {
+
+    margin: 20px var(--margine-laterala);
+    padding: var(--zona-padding);
+    background-color: var(--clr-nature);
+    border: 2px solid var(--clr-border);
+    border-radius: 15px;
 }
 
-#grid-pagina{
+
+#grid-pagina {
     display: grid;
-    gap:10px;
-    grid-template-columns: 2fr 1fr 2fr;
-    grid-template-areas: "welcome welcome welcome"
-                         "promotii promotii anunturi"
-                         "fig1 orar orar"
-                         "fig2 orar orar"
-                         "fig3 orar orar"
-                         "produse produse produse"
-                         "index-intrebari index-intrebari index-intrebari"
-                         ;
-    
-}
-#grid-pagina > *{
-    border: 1px solid var(--culoare-contur);
-    box-shadow: 5px 5px 10px  var(--culoare-contur);
-    /* spatiu intern*/
-    padding: 100px;
-}
- 
-#welcome{
-    grid-area: welcome;
-}
-#promotii{
-    grid-area: promotii;
-}
-#anunturi{
-    grid-area: anunturi;
-}
-#orar{
-    grid-area: orar;
-}
- 
-#fig1{
-    grid-area: fig1;
-}
-#fig2{
-    grid-area: fig2;
-}
-#fig3{
-    grid-area: fig3;
+    gap: var(--grid-gap);
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas:
+        "z1 z1 z1"
+        "z3 z2 z4"
+        "z8 z8 z8"
+        "z7 z5 z6";
 }
 
-figure.fg-img> img{
+
+#grid-pagina>section,
+#continut-divers {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--clr-border);
+    border-radius: 12px;
+    padding: var(--zona-padding);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+#sectiune-tabel {
+
+    overflow-x: auto;
+    padding: 10px;
+}
+
+#sectiune-tabel table {
+    width: 100%;
+    border-collapse: separate;
+
+    border-spacing: 2px;
+    border: 1px solid var(--clr-border);
+    background-color: white;
+}
+
+#sectiune-tabel caption {
+
+    caption-side: bottom;
+    padding: 10px;
+    font-style: italic;
+    color: var(--clr-border);
+}
+
+#sectiune-tabel th,
+#sectiune-tabel td {
+    border: 1px solid var(--clr-border);
+    padding: 12px;
+    text-align: center;
+}
+
+
+#sectiune-tabel thead tr {
+    background-color: var(--clr-border);
+    color: white;
+}
+
+
+#sectiune-tabel tbody tr:nth-child(even) {
+    background-color: var(--clr-highlight);
+}
+
+#sectiune-tabel tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+#sectiune-tabel tbody tr {
+    transition: background-color 0.4s ease;
+}
+
+#sectiune-tabel tbody tr:hover {
+    background-color: var(--clr-accent) !important;
+    cursor: pointer;
+}
+
+
+#sectiune-tabel tfoot tr {
+    background-color: var(--clr-nature);
+    font-weight: bold;
+}
+
+
+img {
+    width: 85%;
+    max-width: 600px;
+    min-width: 250px;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    border-radius: 8px;
+    border: 1px solid var(--clr-border);
+}
+
+#zoom-imagine-header img {
+    width: 100px;
+    min-width: unset;
+    max-width: 150px;
+    margin: 10px 0;
+    border: 1px solid var(--clr-border);
+}
+
+
+#zoom-imagine-header a {
+    cursor: zoom-in;
+}
+
+
+iframe {
+
+    width: 95%;
+    max-width: 850px;
+    min-width: 280px;
+
+
+    aspect-ratio: 16 / 9;
+
+
+    display: block;
+    margin: 30px auto;
+    border-radius: 12px;
+    border: 2px solid var(--clr-border);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+@media screen and (max-width: 1200px) {
+    body {
+        --margine-laterala: 50px;
+        --grid-gap: 15px;
+    }
+
+    #grid-pagina {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "z1 z1" "z2 z2" "z3 z4" "z8 z8" "z7 z7" "z5 z6";
+    }
+
+    img {
+        width: 90%;
+    }
+
+    iframe {
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    body {
+        --margine-laterala: 10px;
+        --grid-gap: 10px;
+    }
+
+    #grid-pagina {
+        display: block;
+    }
+
+    img {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    iframe {
+        width: 100%;
+        min-width: 100%;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    #sectiune-tabel table {
+        border-spacing: 0;
+    }
+}
+
+
+
+.fa-solid,
+.fas {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    display: inline-block;
+    color: var(--clr-border);
+}
+
+
+.fa-fish-fins {
+    color: #004d40 !important;
+    font-size: 1.3rem;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 1px;
+    color: var(--clr-border);
+    font-size: 2rem;
+}
+
+
+
+.container-iframe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
 }
-#produse{
-    grid-area: produse;
-}
-#index-intrebari{
-    grid-area: index-intrebari;
+
+.container-iframe iframe {
+
+    margin-bottom: 0 !important;
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: white;
 }
 
-/* media query -> css pentru max-width de 1200px */
-@media screen and (max-width:1200px){
-    body{
-        --margine-pagina: 80px;
-    }
-    #grid-pagina{
-    
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "welcome welcome"
-                         "promotii promotii"
-                         "anunturi anunturi"
-                         "fig2 orar"
-                         "fig3 orar"
-                         "produse produse"
-                         "index-intrebari index-intrebari"
-                         ;
-    
-}
+.taburi-iframe {
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    max-width: 850px;
 }
 
-@media screen and (max-width:700px){
-    body{
-        --margine-pagina: 50px;
-    }
-    #grid-pagina{
-     display: block;
-    
+.taburi-iframe a {
+
+    display: block;
+    width: 180px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--clr-text);
+    background-color: var(--clr-nature);
+    border: 2px solid var(--clr-border);
+
+
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+    margin: 0 5px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
 }
+
+
+.taburi-iframe a:hover {
+    background-color: var(--clr-highlight);
+    transform: translateY(5px);
+    color: var(--clr-border);
+}
+
+#link-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    display: block;
+    opacity: 0.5;
+    text-decoration: none;
+    transition: opacity 0.5s linear;
+    z-index: 1000;
+}
+
+
+#cerc-rotire {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px dashed var(--clr-text);
+    box-sizing: border-box;
+
+
+    background: linear-gradient(var(--clr-border),
+            var(--clr-highlight),
+            var(--clr-border));
+
+
+    transition: transform 0.6s ease-in-out;
+}
+
+
+#sageata-top {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: var(--clr-text);
+    font-weight: bold;
+    pointer-events: none;
+}
+
+
+#link-top:hover {
+    opacity: 1;
+}
+
+#link-top:hover #cerc-rotire {
+
+    transform: rotate(360deg);
+}
+
+
+#prezentare {
+    grid-area: z1;
+}
+
+#sectiune-tabel {
+    grid-area: z2;
+    overflow-x: auto;
+}
+
+#evenimente {
+    grid-area: z3;
+}
+
+#anunturi {
+    grid-area: z4;
+}
+
+#utilizatori-online {
+    grid-area: z5;
+}
+
+#statistici-utilizator {
+    grid-area: z6;
+}
+
+#date-server {
+    grid-area: z7;
+}
+
+#continut-divers {
+    grid-area: z8;
 }
