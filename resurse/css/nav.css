@@ -1,67 +1,107 @@
+body {
+  --nav-bg: #000000;
+  --nav-text: #ffffff;
+  --nav-hover-bg: #4C7AE6;
+  --nav-shadow-color: #4DDCE6;
+}
+
+nav ul.menu li a, nav ul.menu li .div-meniu {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 15px;
+  text-decoration: none;
+  color: var(--nav-text);
+  transition: all 0.5s linear;
+}
+
 nav {
-    --latime-buton: 150px;
-    --inaltime-buton: 40px;
-    background-color: var(--clr-border);
+  background-color: var(--nav-bg);
+}
+nav #ch-menu, nav #hamburger {
+  display: none;
+}
+nav ul.menu {
+  display: flex;
+  list-style: none;
+}
+nav ul.menu li {
+  position: relative;
+  background-color: var(--nav-bg);
+}
+nav ul.menu li a, nav ul.menu li .div-meniu {
+  text-shadow: 0 -50px 0 transparent;
+}
+nav ul.menu li a:hover, nav ul.menu li .div-meniu:hover {
+  background-color: var(--nav-hover-bg);
+  text-shadow: 0 0 0 var(--nav-shadow-color);
+}
+nav ul.menu li ul {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  padding: 0;
+  list-style: none;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s ease-in-out;
+  z-index: 100;
+}
+nav ul.menu li ul li {
+  width: 100%;
+  list-style: none;
+}
+nav ul.menu li ul li a {
+  background-color: #222;
+  text-shadow: none !important;
+}
+nav ul.menu li:hover > ul {
+  transform: scaleY(1);
 }
 
-ul.menu {
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-ul.menu ul {
+@media screen and (max-width: 1024px) {
+  nav ul.menu li {
+    font-size: 0.85rem;
+  }
+  nav ul.menu li .text-acasa {
     display: none;
-    animation: animatie_submeniu 0.5s linear; 
-    transform-origin: center top;
+  }
+  nav ul.menu li .icon-acasa {
+    display: inline-block;
+    font-size: 1.2rem;
+  }
 }
-
-@keyframes animatie_submeniu {
-    0% {
-        opacity: 0;
-        transform: scaleY(0); 
-    }
-    100% {
-        opacity: 1;
-        transform: scaleY(1);
-    }
-}
-
-ul.menu li {
-    font-weight: bold;
-    background-color: var(--clr-highlight);
-    border: 1px solid var(--clr-border);
-    width: var(--latime-buton);
-    height: var(--inaltime-buton);
-    text-align: center;
-    line-height: var(--inaltime-buton);
-    transition: all 0.3s linear;
-}
-
-ul.menu li a {
-    text-decoration: none;
-    color: var(--clr-text);
-    display: block;
-}
-
-ul.menu li:hover {
-    background-color: var(--clr-accent);
-}
-
-ul.menu > li:hover ul {
-    display: block;
-    position: absolute;
-}
-
-
 @media screen and (max-width: 700px) {
-    ul.menu ul {
-        animation: none !important;
-        transform: none !important;
-    }
-    
-    ul.menu li {
-        transition: none !important;
-    }
+  #hamburger {
+    display: block;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+  }
+  ul.menu {
+    display: none;
+    flex-direction: column;
+  }
+  ul.menu li {
+    width: 100%;
+  }
+  ul.menu li a, ul.menu li .div-meniu {
+    text-shadow: none !important;
+    animation: animatie_litere 0.7s ease forwards;
+  }
+  #ch-menu:checked ~ ul.menu {
+    display: flex;
+  }
 }
+@keyframes animatie_litere {
+  from {
+    letter-spacing: -10px;
+    opacity: 0;
+  }
+  to {
+    letter-spacing: 2px;
+    opacity: 1;
+  }
+}/*# sourceMappingURL=nav.css.map */

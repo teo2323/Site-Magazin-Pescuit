@@ -446,3 +446,66 @@ math msub:nth-child(1) mi {
 math mfrac {
     padding: 5px;
 }
+
+
+#watermark-print, #banner-proiect {
+    display: none;
+}
+
+@media print {
+    @page :left { margin: 1cm 1cm 1cm 3cm; }
+    @page :right { margin: 1cm 3cm 1cm 1cm; }
+
+    * {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        color: black !important;
+    }
+
+    #grid-pagina, section, article, main, header, footer {
+        display: block !important;
+        margin: 0;
+        padding: 10px 0;
+    }
+
+    img, video, iframe, figure, figcaption, object, #link-top, map, .container-iframe, #zoom-imagine-header {
+        display: none !important;
+    }
+
+    a { text-decoration: none !important; }
+    h1 { text-align: center; margin-bottom: 20px; }
+
+    nav { display: block !important; page-break-after: always; }
+    ul.menu { display: block !important; list-style: none; padding: 0; }
+    ul.menu ul { display: none !important; }
+    footer { page-break-before: always; }
+
+    #banner-proiect {
+        display: block !important;
+        position: absolute;
+        bottom: 1cm;
+        left: 15%;
+        width: 70%;
+        border: 4px inset black !important;
+        text-align: center;
+        padding: 5px;
+    }
+
+    #watermark-print {
+        display: block !important;
+        position: fixed;
+        bottom: 3cm;
+        right: 0.5cm;
+        width: 4cm;
+        height: 1cm;
+        border: 3px solid black !important;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        opacity: 0.4;
+        line-height: 0.5cm;
+        z-index: 9999;
+        background: white !important;
+    }
+}

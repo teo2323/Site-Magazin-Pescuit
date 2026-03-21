@@ -31,6 +31,9 @@
 </head>
 
 <body id="top">
+    <div id="watermark-print">
+        Cotofan<br>Teodor
+    </div>
     <header>
         <h1>Magazinul Teo Pescarul</h1>
 
@@ -53,22 +56,41 @@
             </div>
         </div>
 
-        <nav>
-            <ul class="menu">
-                <li><a href="#top">Acasă</a>
-                    <ul>
-                        <li><a href="#despre-noi">Despre Noi</a></li>
-                        <li><a href="#evenimente">Evenimente</a></li>
-                        <li><a href="#echipamente">Echipamente</a></li>
-                        <li><a href="#video-utile">Video</a></li>
-                    </ul>
-                </li>
-                <li><a href="produse.html">Produse</a></li>
-                <li><a href="produs.html">Detalii Produs</a></li>
-                <li><a href="inregistrare.html">Înregistrare</a></li>
-                <li><a href="contact.html">Contact</a></li>
+       <nav>
+    <input type="checkbox" id="ch-menu">
+    <label for="ch-menu" id="hamburger">
+        <i class="fa-solid fa-bars"></i> </label>
+
+    <ul class="menu">
+        <li>
+            <a href="#top" id="home-link">
+                <span class="text-acasa">Acasă</span>
+                <i class="fa-solid fa-house icon-acasa"></i>
+            </a>
+        </li>
+        
+        <li>
+            <div class="div-meniu">Produse</div>
+            <ul>
+                <li><a href="produse.html">Toate Produsele</a></li>
+                <li><a href="lansete.html">Lansete Spinning</a></li>
+                <li><a href="mulinete.html">Mulinete Casting</a></li>
             </ul>
-        </nav>
+        </li>
+
+        <li>
+            <div class="div-meniu">Navigare Pagina</div>
+            <ul>
+                <li><a href="#despre-noi">Despre Noi</a></li>
+                <li><a href="#evenimente">Evenimente</a></li>
+                <li><a href="#video-utile">Video</a></li>
+            </ul>
+        </li>
+
+        <li><a href="inregistrare.html">Înregistrare</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
     </header>
 
     <main id="grid-pagina">
@@ -365,6 +387,7 @@
             <span id="sageata-top">&#8593;</span>
         </a>
         <p><a href="#top">Înapoi la începutul paginii</a></p>
+        <p id="banner-proiect">Acesta este un proiect școlar!</p>
     </footer>
 </body>
 

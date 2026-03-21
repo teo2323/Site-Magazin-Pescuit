@@ -1,0 +1,119 @@
+
+$inaltime-meniu: 40px;
+$timp-tranzitie: 0.5s;
+
+
+body {
+    --nav-bg: #000000;
+    --nav-text: #ffffff;
+    --nav-hover-bg: #4C7AE6; 
+    --nav-shadow-color: #4DDCE6; 
+}
+
+
+%stil-buton {
+    display: block;
+    height: $inaltime-meniu;
+    line-height: $inaltime-meniu;
+    padding: 0 15px;
+    text-decoration: none;
+    color: var(--nav-text);
+    transition: all $timp-tranzitie linear;
+}
+
+nav {
+    background-color: var(--nav-bg);
+    
+    #ch-menu, #hamburger { display: none; } 
+
+    ul.menu {
+        display: flex;
+        list-style: none;
+
+        
+        li {
+            position: relative;
+            background-color: var(--nav-bg);
+
+            a, .div-meniu {
+                @extend %stil-buton;
+                
+                text-shadow: 0 -50px 0 transparent; 
+                
+                &:hover {
+                    background-color: var(--nav-hover-bg);
+                    text-shadow: 0 0 0 var(--nav-shadow-color);
+                }
+            }
+
+            
+          
+            ul {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 200px;
+                padding: 0;        
+                list-style: none;  
+                transform: scaleY(0);
+                transform-origin: top;
+                transition: transform $timp-tranzitie ease-in-out;
+                z-index: 100;
+
+                li {
+                    width: 100%;   
+                    list-style: none; 
+                    
+                    a {
+                        background-color: #222;
+                        text-shadow: none !important; 
+                    }
+                }
+            }
+
+            
+            &:hover > ul { transform: scaleY(1); }
+        }
+    }
+}
+
+
+@media screen and (max-width: 1024px) {
+    nav ul.menu li {
+        font-size: 0.85rem;
+        .text-acasa { display: none; }
+        .icon-acasa { display: inline-block; font-size: 1.2rem; }
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    #hamburger {
+        display: block;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    ul.menu {
+        display: none; 
+        flex-direction: column;
+
+        li {
+            width: 100%;
+            a, .div-meniu {
+                text-shadow: none !important; 
+               
+                animation: animatie_litere 0.7s ease forwards;
+            }
+        }
+    }
+
+    #ch-menu:checked ~ ul.menu { display: flex; }
+}
+
+@keyframes animatie_litere {
+    from { letter-spacing: -10px; opacity: 0; }
+    to { letter-spacing: 2px; opacity: 1; }
+}
