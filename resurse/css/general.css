@@ -404,3 +404,45 @@ h3 {
 #continut-divers {
     grid-area: z8;
 }
+
+math {
+    
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+    font-size: 1.4rem; 
+}
+
+
+math mi {
+    color: var(--clr-border); 
+    font-weight: bold;
+    font-style: italic; 
+}
+
+
+math mtext {
+    color: #444; 
+    font-size: 0.75rem; 
+    font-weight: normal;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+math mo {
+    color: var(--clr-accent); 
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+
+math msub:nth-child(1) mi {
+    color: #d32f2f; 
+}
+
+
+math mfrac {
+    padding: 5px;
+}
