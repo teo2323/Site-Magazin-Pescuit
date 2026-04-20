@@ -1,0 +1,31 @@
+{
+    "cale_baza": "/resurse/imagini/erori/",
+    "eroare_default": {
+        "titlu": "Eroare Necunoscută",
+        "text": "A apărut o problemă neprevăzută la bordul navei.",
+        "imagine": "default.png"
+    },
+    "info_erori": [
+        {
+            "identificator": 404,
+            "status": true,
+            "titlu": "Pagină Negăsită",
+            "text": "Se pare că momeala nu a funcționat. Pagina căutată nu este în acest sector.",
+            "imagine": "404-fish.png"
+        },
+        {
+            "identificator": 403,
+            "status": true,
+            "titlu": "Acces Interzis",
+            "text": "Nu aveți permis de pescuit pentru această zonă protejată.",
+            "imagine": "403-forbidden.png"
+        },
+        {
+            "identificator": 400,
+            "status": true,
+            "titlu": "Cerere Incorectă",
+            "text": "Nu aveți permisiunea de a accesa direct fișierele de tip șablon (EJS).",
+            "imagine": "400-bad-request.png"
+        }
+    ]
+}

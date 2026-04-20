@@ -23,7 +23,7 @@ body {
     --clr-highlight: #4DDCE6;
     --clr-accent: #4CE6BC;
     --clr-nature: #4CE689;
-
+    --clr-visited: #8b4ce6;
 
     --margine-laterala: 100px;
 
@@ -38,6 +38,64 @@ body {
     font-family: 'Open Sans', sans-serif;
 
     margin: 0;
+}
+
+a:active {
+    border: 1px solid var(--clr-text); 
+    outline: none; 
+}
+main a {
+    --c1: rgba(77, 220, 230, 0.5);
+
+    background-image: radial-gradient(
+        circle, 
+        var(--c1) 0%, 
+        var(--c1) 40%, 
+        transparent 80%, 
+        transparent 100%
+    );
+
+    background-position: center;
+    background-size: 0% 0%;
+    background-repeat: no-repeat;
+
+    transition: background-size 0.5s ease-in-out;
+
+    padding: 2px 4px;
+    border-radius: 4px;
+    text-decoration: underline; 
+}
+
+main a:hover {
+    background-size: 100% 100%;
+}
+
+
+a {
+    color: var(--clr-border); 
+    transition: color 0.3s ease;
+    text-decoration: underline; 
+}
+
+a:visited {
+    color: var(--clr-visited);
+}
+
+a[href^="http"]:hover::before {
+    color: var(--clr-nature); 
+    
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+a[href^="http"]::before {
+    content: "\2BB3"; 
+    
+    font-size: 1.5em; 
+    
+    vertical-align: middle;
+    margin-right: 0.3em; 
+    line-height: 0;
+    transition: color 0.3s ease-in-out;
 }
 
 
@@ -448,8 +506,69 @@ math mfrac {
 }
 
 
-#watermark-print, #banner-proiect {
+#watermark-print, #banner-proiect { 
     display: none;
+}
+
+#grid-pagina.layout-blog {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--grid-gap);
+    grid-template-columns: none;  
+    grid-template-areas: none;
+}
+
+.articol-blog, #sectiune-video-local {
+    flex: 1 1 450px;
+    box-sizing: border-box;
+}
+
+#video-promo {
+    width: 100%;
+    max-width: 100%; 
+    aspect-ratio: 16 / 9; 
+    object-fit: contain; 
+    background-color: black; 
+    display: block;
+    margin: 0 auto;
+    border-radius: 12px;
+    border: 3px solid var(--clr-border);
+}
+
+video::cue {
+    background-color: rgba(10, 25, 50, 0.9); 
+    
+    color: #ffffff;
+    
+    text-shadow: 1px 1px 2px black;
+    
+    font-family: 'Open Sans', sans-serif;
+}
+
+.galerie-blog {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.galerie-blog figure {
+    flex: 1 1 30%;
+    min-width: 250px;
+    margin: 0;
+}
+
+@media screen and (max-width: 800px) {
+    #grid-pagina.layout-blog {
+        flex-direction: column;
+    }
+    
+    .articol-blog, #sectiune-video-local {
+        width: 100%;
+        flex: 1 1 auto;
+    }
+
+    .galerie-blog figure {
+        flex: 1 1 100% !important;
+    }
 }
 
 @media print {
@@ -472,6 +591,7 @@ math mfrac {
     img, video, iframe, figure, figcaption, object, #link-top, map, .container-iframe, #zoom-imagine-header {
         display: none !important;
     }
+
 
     a { text-decoration: none !important; }
     h1 { text-align: center; margin-bottom: 20px; }

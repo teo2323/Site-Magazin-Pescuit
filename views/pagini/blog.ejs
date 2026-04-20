@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include("../fragmente/head") %>
+    <title>Blog - Excursie Pescuit Irlanda | Teo Pescarul</title>
+    <style>
+        .articol-blog { padding: 20px; line-height: 1.6; }
+        .galerie-blog { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+        .galerie-blog img { border-radius: 8px; border: 2px solid var(--clr-border); transition: transform 0.3s; }
+        .galerie-blog img:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body id="top">
+    <%- include("../fragmente/header") %>
+
+    <main id="grid-pagina" class="layout-blog">
+        <section class="articol-blog">
+            <h2>Excursia mea la pescuit în Irlanda</h2>
+            <p>Recent, am avut ocazia să explorez apele reci și adânci ale Irlandei în căutarea ravnitelor știuci europene. Peisajele verzi și lacurile vaste (Lough Erne si Owel) oferă un decor de vis pentru orice pescar de spinning.</p>
+            
+            <article>
+                <h3>Experiența pe apă</h3>
+                <p>Vremea NU a fost tipic deloc irlandeză: ploaie, soare, fara ploi si vant linistit. Folosind năluci de tip jerkbait și hibdridele Miuras Mouse, am reușit să capturez câteva exemplare superbe de peste 90 cm. Tehnica principală a fost pescuitul pe praguri, în zonele cu vegetație submersă,dar un rol imporatant l-a avut ghidul nostru, Ion Tinca .</p>
+            </article>
+
+            <div class="galerie-blog">
+                <figure>
+                    <img src="/resurse/imagini/blog/irlanda1.png" alt="Pastrav Flavius" width="300">
+                    <figcaption>Sa nu uitam de populatia considerabila de pastrav!.</figcaption>
+                </figure>
+                <figure>
+                    <img src="/resurse/imagini/blog/irlanda2.png" alt="Captură știucă Irlanda" width="300">
+                    <figcaption>O știucă bătăioasă de 95 cm.</figcaption>
+                </figure>
+                <figure>
+                    <img src="/resurse/imagini/blog/irlanda3.png" alt="2 Stiuci" width="300">
+                    <figcaption>Double Trouble.</figcaption>
+                </figure>
+            </div>
+
+            <p style="margin-top:20px;">Irlanda rămâne, fără îndoială, una dintre cele mai bune destinații din lume pentru pescuitul la răpitori. Sper ca acest scurt jurnal să vă inspire pentru următoarea voastră aventură!</p>
+        </section>
+
+        <section id="sectiune-video-local">
+            <h2>Demonstrație tehnici de lansare</h2>
+            <video id="video-promo" controls poster="/resurse/imagini/poster-video.jpg" preload="auto">
+                <source src="/resurse/video/drillClean.mp4" type="video/mp4">
+                <source src="/resurse/video/drillClean.webm" type="video/webm">
+                <track src="/resurse/video/subtitrare_ro.vtt" kind="subtitles" srclang="ro" label="Română" default>
+        
+                <track src="/resurse/video/subtitrare_en.vtt" kind="subtitles" srclang="en" label="English">
+
+                Browserul tău nu suportă redarea acestui format video.
+            </video>
+        </section>
+
+    </main>
+
+    <%- include("../fragmente/footer") %>
+</body>
+</html>
