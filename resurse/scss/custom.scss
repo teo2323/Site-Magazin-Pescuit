@@ -1,0 +1,35 @@
+@import "../../node_modules/bootstrap/scss/functions";
+
+$primary: #1eb113;
+$success: #ff8c00;
+$btn-primary-color: #eaeaea;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 800px,
+  lg: 1100px,
+  xl: 1200px,
+  xxl: 1400px
+);
+$border-radius: 12px;
+$border-radius-lg: 20px;
+$h1-font-size: 3.5rem;
+$h2-font-size: 4.8rem;
+$font-family-sans-serif: 'Verdana', sans-serif;
+$body-bg: #337cc6;
+$card-border-width: 2px;
+
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/variables-dark";
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+nav a {
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    color: #d70707 !important;
+}

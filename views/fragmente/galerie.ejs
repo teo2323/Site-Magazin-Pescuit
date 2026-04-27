@@ -1,0 +1,31 @@
+<section id="galerie-statica">
+    <h2>Galerie Foto - <%= galerie.length > 0 ? galerie[0].anotimp.toUpperCase() : "Sezonul Curent" %></h2>
+    
+    <div class="grid-galerie">
+        <% galerie.forEach(function(img) { %>
+            <figure>
+                <picture>
+                    <source srcset="<%= caleGalerie %>mici/<%= img.cale_fisier %>" media="(max-width: 600px)">
+                    
+                    <source srcset="<%= caleGalerie %>medii/<%= img.cale_fisier %>" media="(max-width: 1000px)">
+                    
+                    <img src="<%= caleGalerie %><%= img.cale_fisier %>" 
+                         alt="<%= img.alt || img.cale_fisier %>" 
+                         title="<%= img.text_descriere %>">
+                </picture>
+                
+                <figcaption>
+                    <span class="index-imagine"></span>
+                    <strong><%= img.titlu %></strong>
+                    <p><%= img.text_descriere %></p>
+                    
+                    <% if(img.licenta === "CC-BY") { %>
+                        <small class="atribuire">
+                            Sursă: <a href="<%= img.sursa %>" target="_blank"><%= img.autor %></a>
+                        </small>
+                    <% } %>
+                </figcaption>
+            </figure>
+        <% }); %>
+    </div>
+</section>

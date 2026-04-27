@@ -1,7 +1,5 @@
-
 $inaltime-meniu: 40px;
 $timp-tranzitie: 0.5s;
-
 
 body {
     --nav-bg: #000000;
@@ -9,7 +7,6 @@ body {
     --nav-hover-bg: #4C7AE6; 
     --nav-shadow-color: #4DDCE6; 
 }
-
 
 %stil-buton {
     display: block;
@@ -19,6 +16,7 @@ body {
     text-decoration: none;
     color: var(--nav-text);
     transition: all $timp-tranzitie linear;
+    white-space: nowrap;
 }
 
 nav {
@@ -29,8 +27,9 @@ nav {
     ul.menu {
         display: flex;
         list-style: none;
+        padding: 0;
+        margin: 0;
 
-        
         li {
             position: relative;
             background-color: var(--nav-bg);
@@ -46,8 +45,6 @@ nav {
                 }
             }
 
-            
-          
             ul {
                 display: block;
                 position: absolute;
@@ -72,14 +69,12 @@ nav {
                 }
             }
 
-            
             &:hover > ul { transform: scaleY(1); }
         }
     }
 }
 
-
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1100px) {
     nav ul.menu li {
         font-size: 0.85rem;
         .text-acasa { display: none; }
@@ -87,8 +82,7 @@ nav {
     }
 }
 
-
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
     #hamburger {
         display: block;
         color: white;
@@ -104,8 +98,13 @@ nav {
             width: 100%;
             a, .div-meniu {
                 text-shadow: none !important; 
-               
                 animation: animatie_litere 0.7s ease forwards;
+            }
+
+            ul {
+                position: static;
+                width: 100%;
+                transform: scaleY(1);
             }
         }
     }

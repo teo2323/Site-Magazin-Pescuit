@@ -1,8 +1,87 @@
 const express = require('express');
 const app = express();
-
 const fs = require('fs'); 
 const path = require('path');
+global.folderScss = path.join(__dirname, "resurse/scss");
+global.folderCss = path.join(__dirname, "resurse/css");
+
+const sass = require('sass'); 
+
+
+
+ 
+function compileazaScss(caleScss, caleCss) {
+    
+    let caleScssAbsoluta = path.isAbsolute(caleScss) 
+        ? caleScss 
+        : path.join(global.folderScss, caleScss);
+
+    let numeFisierFaraExtensie = path.parse(caleScssAbsoluta).name;
+
+    let caleCssAbsoluta;
+    if (!caleCss) {
+        caleCssAbsoluta = path.join(global.folderCss, numeFisierFaraExtensie + ".css");
+    } else {
+        caleCssAbsoluta = path.isAbsolute(caleCss) 
+            ? caleCss 
+            : path.join(global.folderCss, caleCss);
+    }
+
+    if (fs.existsSync(caleCssAbsoluta)) {
+        try {
+            const numeFisierCss = path.basename(caleCssAbsoluta);
+            const directorBackupCss = path.join(__dirname, "backup", "resurse", "css");
+
+            if (!fs.existsSync(directorBackupCss)) {
+                fs.mkdirSync(directorBackupCss, { recursive: true });
+            }
+
+            fs.copyFileSync(caleCssAbsoluta, path.join(directorBackupCss, numeFisierCss));
+            console.log(`[BACKUP] Fișierul vechi "${numeFisierCss}" a fost arhivat.`);
+        } catch (err) {
+            console.error(`[BACKUP ERROR] Eșec la copierea în backup pentru ${caleCssAbsoluta}:`, err);
+        }
+    }
+
+    try {
+        const rez = sass.compile(caleScssAbsoluta, {
+            logger: sass.Logger.silent
+        });
+        
+        let directorCss = path.dirname(caleCssAbsoluta);
+        if (!fs.existsSync(directorCss)) {
+            fs.mkdirSync(directorCss, { recursive: true });
+        }
+
+        fs.writeFileSync(caleCssAbsoluta, rez.css);
+        console.log(`[SCSS] Compilare reușită: ${path.basename(caleScssAbsoluta)} -> ${path.basename(caleCssAbsoluta)}`);
+    } catch (err) {
+        console.error(`[SCSS] Eroare la compilarea fișierului ${caleScssAbsoluta}:`, err);
+    }
+}
+
+
+function compilareInitiala() {
+    fs.readdir(global.folderScss, (err, fisiere) => {
+        if (err) {
+            console.error("[SCSS] Eroare la citirea directorului SCSS:", err);
+            return;
+        }
+
+        fisiere.forEach(fisier => {
+            if (fisier.endsWith(".scss")) {
+                // Dacă fișierul nu începe cu "_" (convenție Sass pentru partials)
+                if (!fisier.startsWith("_")) {
+                    compileazaScss(fisier);
+                }
+            }
+        });
+    });
+}
+
+compilareInitiala();
+
+const sharp = require('sharp');
 
 const vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"];
 for (let folder of vect_foldere) {
@@ -39,6 +118,45 @@ function initErori() {
 }
 
 initErori(); 
+
+function getAnotimp(data = new Date()) {
+    let luna = data.getMonth() + 1; 
+    if ([12, 1, 2].includes(luna)) return "iarna";
+    if ([3, 4, 5].includes(luna)) return "primavara";
+    if ([6, 7, 8].includes(luna)) return "vara";
+    return "toamna";
+}
+
+let dateGalerie = JSON.parse(fs.readFileSync(path.join(__dirname, 'resurse/json/galerie.json'), 'utf8'));
+
+function proceseazaImagini() {
+    const caleAbsoluta = path.join(__dirname, 'resurse/imagini/galerie/');
+    const caleMici = path.join(caleAbsoluta, 'mici/');
+    const caleMedii = path.join(caleAbsoluta, 'medii/');
+
+    if (!fs.existsSync(caleMici)) fs.mkdirSync(caleMici, { recursive: true });
+    if (!fs.existsSync(caleMedii)) fs.mkdirSync(caleMedii, { recursive: true });
+
+    dateGalerie.imagini.forEach(img => {
+        let numeFisier = img.cale_fisier;
+        let caleSursa = path.join(caleAbsoluta, numeFisier);
+        
+        sharp(caleSursa)
+            .resize(450)
+            .jpeg({ quality: 80 })
+            .toFile(path.join(caleMedii, numeFisier))
+            .catch(err => console.log("Eroare Sharp Medii:", err));
+
+        sharp(caleSursa)
+            .resize(300) 
+            .jpeg({ quality: 80 })
+            .toFile(path.join(caleMici, numeFisier))
+            .catch(err => console.log("Eroare Sharp Mici:", err));
+    });
+}
+
+proceseazaImagini();
+
 function afisareEroare(res, identificator, titlu, text, imagine) {
     let eroareGasita = obGlobal.obErori.info_erori.find(e => e.identificator === identificator);
     
@@ -78,7 +196,19 @@ app.get(/^\/resurse(\/.*)?$/, (req, res) => {
 });
 
 app.get(["/", "/index", "/home"], (req, res) => {
-    res.render("pagini/index", {ip: req.ip});
+    // let dataTest = new Date("2026-01-15"); 
+    let dataCurenta = new Date(); 
+    let anotimpCurent = getAnotimp(dataCurenta);
+
+    let imaginiFiltrate = dateGalerie.imagini
+        .filter(img => img.anotimp === anotimpCurent)
+        .slice(0, 10); 
+
+    res.render("pagini/index", {
+        ip: req.ip,
+        galerie: imaginiFiltrate,
+        caleGalerie: dateGalerie.cale_galerie
+    });
 });
 
 app.get(/\.ejs$/, (req, res) => {
@@ -110,4 +240,14 @@ console.log("Folderul curent de lucru:", process.cwd());
 
 app.listen(PORT, () => {
     console.log(`Serverul a pornit la adresa http://localhost:${PORT}`);
+});
+
+fs.watch(global.folderScss, (eventType, filename) => {
+    if (filename && filename.endsWith(".scss")) {
+        if (!filename.startsWith("_")) {
+            console.log(`[WATCH] S-a detectat o modificare la: ${filename}`);
+            
+            compileazaScss(filename);
+        }
+    }
 });

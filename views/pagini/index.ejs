@@ -11,7 +11,45 @@
 
     <%- include("../fragmente/header") %>
 
+    <section class="container text-center my-5 py-5">
+    <h1 id="efect-css-reflexie-text" data-text="TEO PESCARUL">
+        TEO PESCARUL
+    </h1>
+</section>
 
+    <section id="demo-bootstrap" class="container my-5 p-4 border shadow">
+    <h2 class="mb-4">Demonstrație Customizare Bootstrap</h2>
+
+    <h1>Acesta este h1 (setat la 3.5rem)</h1>
+    <h2>Acesta este h2 (setat la 4.8rem)</h2>
+    <p>Acest text folosește familia de font implicită aleasă de noi.</p>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <button class="btn btn-primary btn-lg w-100">
+                Buton Primary (Fundal Verde + Text Roșu)
+            </button>
+            <p class="small mt-2">Fundalul e verde din <code>$primary</code>, textul e roșu din <code>$btn-primary-color</code>.</p>
+        </div>
+        
+        <div class="col-md-6">
+            <button class="btn btn-success btn-lg w-100">
+                Buton Success (Fundal Portocaliu)
+            </button>
+            <p class="small mt-2">Fundalul e portocaliu din <code>$success</code>. Observați colțurile rotunjite (12px).</p>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            Acest card are marginile rotunjite conform <code>$border-radius</code>.
+        </div>
+    </div>
+</section>
+
+    <hr>
+
+    <%- include("../fragmente/galerie") %>
     <main id="grid-pagina">
         <section id="prezentare">
             <hgroup>
@@ -100,6 +138,8 @@
                     Prezentare echipamente de casting.</li>
             </ul>
         </section>
+
+        
 
         <section id="anunturi">
             <h3>Anunțuri Importante</h3>
