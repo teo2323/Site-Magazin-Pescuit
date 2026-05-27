@@ -70,7 +70,6 @@ function compilareInitiala() {
 
         fisiere.forEach(fisier => {
             if (fisier.endsWith(".scss")) {
-                // Dacă fișierul nu începe cu "_" (convenție Sass pentru partials)
                 if (!fisier.startsWith("_")) {
                     compileazaScss(fisier);
                 }
@@ -191,9 +190,7 @@ app.get("/favicon.ico", (req, res) => {
     res.sendFile(__dirname + "/resurse/imagini/favicon/favicon.ico");
 });
 
-app.get(/^\/resurse(\/.*)?$/, (req, res) => {
-    afisareEroare(res, 403);
-});
+
 
 app.get(["/", "/index", "/home"], (req, res) => {
     // let dataTest = new Date("2026-01-15"); 
@@ -231,6 +228,9 @@ app.get("/:nume_pagina", (req, res) => {
     });
 });
 
+app.get(/^\/resurse(\/.*)?$/, (req, res) => {
+    afisareEroare(res, 403);
+});
 
 const PORT = 8080;
 
@@ -251,3 +251,4 @@ fs.watch(global.folderScss, (eventType, filename) => {
         }
     }
 });
+

@@ -13,20 +13,23 @@ nav ul.menu li a, nav ul.menu li .div-meniu {
   text-decoration: none;
   color: var(--nav-text);
   transition: all 0.5s linear;
-  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
 }
 
 nav {
   background-color: var(--nav-bg);
 }
-nav #ch-menu, nav #hamburger {
+nav input[type=checkbox],
+nav #hamburger {
   display: none;
 }
 nav ul.menu {
   display: flex;
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 nav ul.menu li {
   position: relative;
@@ -46,6 +49,7 @@ nav ul.menu li ul {
   left: 0;
   width: 200px;
   padding: 0;
+  margin: 0;
   list-style: none;
   transform: scaleY(0);
   transform-origin: top;
@@ -59,48 +63,110 @@ nav ul.menu li ul li {
 nav ul.menu li ul li a {
   background-color: #222;
   text-shadow: none !important;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+nav ul.menu li ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 15px;
+  right: 15px;
+  height: 2px;
+  background-color: var(--nav-shadow-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+nav ul.menu li ul li a:hover {
+  background-color: var(--nav-hover-bg) !important;
+}
+nav ul.menu li ul li a:hover::after {
+  transform: scaleX(1);
 }
 nav ul.menu li:hover > ul {
   transform: scaleY(1);
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1200px) {
   nav ul.menu li {
     font-size: 0.85rem;
   }
   nav ul.menu li .text-acasa {
     display: none;
   }
-  nav ul.menu li .icon-acasa {
-    display: inline-block;
-    font-size: 1.2rem;
+  nav ul.menu li .text-item {
+    display: none;
   }
 }
-@media screen and (max-width: 800px) {
-  #hamburger {
+@media screen and (max-width: 700px) {
+  nav #hamburger {
     display: block;
     color: white;
     padding: 10px;
     cursor: pointer;
+    font-size: 1.4rem;
   }
-  ul.menu {
+  nav ul.menu {
     display: none;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
   }
-  ul.menu li {
+  nav ul.menu li {
+    font-size: 1rem;
     width: 100%;
+    position: relative;
   }
-  ul.menu li a, ul.menu li .div-meniu {
+  nav ul.menu li input[type=checkbox] {
+    display: none;
+  }
+  nav ul.menu li .text-item {
+    display: inline !important;
+  }
+  nav ul.menu li a, nav ul.menu li .div-meniu {
     text-shadow: none !important;
     animation: animatie_litere 0.7s ease forwards;
-  }
-  ul.menu li ul {
-    position: static;
     width: 100%;
-    transform: scaleY(1);
   }
-  #ch-menu:checked ~ ul.menu {
+  nav ul.menu li a:hover, nav ul.menu li .div-meniu:hover {
+    background-color: var(--nav-hover-bg);
+    text-shadow: none !important;
+  }
+  nav ul.menu li ul {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: 200px;
+    transform: scaleY(0) !important;
+    transform-origin: top;
+    transition: transform 0.5s ease-in-out !important;
+    display: block !important;
+    background-color: #111;
+    z-index: 200;
+  }
+  nav ul.menu li ul li a {
+    padding-left: 40px;
+    background-color: #111;
+  }
+  nav ul.menu li ul li a::after {
+    display: none !important;
+  }
+  nav ul.menu li ul li a:hover {
+    background-color: var(--nav-hover-bg) !important;
+  }
+  nav ul.menu li:hover > ul {
+    transform: scaleY(1) !important;
+  }
+  nav #ch-menu:checked ~ ul.menu {
     display: flex;
+  }
+  nav ul.menu .text-acasa {
+    display: none !important;
+  }
+  nav ul.menu .icon-acasa {
+    display: inline-block !important;
+    font-size: 1.4rem;
   }
 }
 @keyframes animatie_litere {

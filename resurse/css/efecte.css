@@ -8,10 +8,10 @@
 #efect-css-reflexie-text::after {
   content: attr(data-text);
   position: absolute;
-  top: 95%;
-  left: 0;
-  transform: scaleY(-1);
-  transform-origin: top;
+  top: -50%;
+  left: 0%;
+  transform: scaleY(-1) skewX(-10deg);
+  transform-origin: bottom;
   filter: blur(2px);
   opacity: 0.5;
   transition: transform 0.5s ease-in-out;
@@ -21,7 +21,7 @@
 }
 
 #efect-css-reflexie-text:hover::after {
-  transform: scaleY(-2.5);
+  transform: scaleY(-2.5) skewX(-10deg);
 }
 
 hr {

@@ -27,9 +27,7 @@ body {
 
     --margine-laterala: 100px;
 
-
     --grid-gap: 20px;
-
 
     --zona-padding: 25px;
 
@@ -41,17 +39,18 @@ body {
 }
 
 a:active {
-    border: 1px solid var(--clr-text); 
-    outline: none; 
+    border: 1px solid var(--clr-text);
+    outline: none;
 }
+
 main a {
     --c1: rgba(77, 220, 230, 0.5);
 
     background-image: radial-gradient(
-        circle, 
-        var(--c1) 0%, 
-        var(--c1) 40%, 
-        transparent 80%, 
+        circle,
+        var(--c1) 0%,
+        var(--c1) 40%,
+        transparent 80%,
         transparent 100%
     );
 
@@ -63,18 +62,17 @@ main a {
 
     padding: 2px 4px;
     border-radius: 4px;
-    text-decoration: underline; 
+    text-decoration: underline;
 }
 
 main a:hover {
     background-size: 100% 100%;
 }
 
-
 a {
-    color: var(--clr-border); 
+    color: var(--clr-border);
     transition: color 0.3s ease;
-    text-decoration: underline; 
+    text-decoration: underline;
 }
 
 a:visited {
@@ -82,22 +80,18 @@ a:visited {
 }
 
 a[href^="http"]:hover::before {
-    color: var(--clr-nature); 
-    
+    color: var(--clr-nature);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 a[href^="http"]::before {
-    content: "\2BB3"; 
-    
-    font-size: 1.5em; 
-    
+    content: "\2BB3";
+    font-size: 1.5em;
     vertical-align: middle;
-    margin-right: 0.3em; 
+    margin-right: 0.3em;
     line-height: 0;
     transition: color 0.3s ease-in-out;
 }
-
 
 header,
 footer {
@@ -111,7 +105,6 @@ footer {
 }
 
 main {
-
     margin: 20px var(--margine-laterala);
     padding: var(--zona-padding);
     background-color: var(--clr-nature);
@@ -119,18 +112,16 @@ main {
     border-radius: 15px;
 }
 
-
 #grid-pagina {
     display: grid;
     gap: var(--grid-gap);
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas:
-        "z1 z1 z1"
-        "z3 z2 z4"
-        "z8 z8 z8"
-        "z7 z5 z6";
+        "z1 z1 z1 z1"
+        "z3 z2 z2 z4"
+        "z8 z8 z8 z8"
+        "z7 z7 z5 z6";
 }
-
 
 #grid-pagina>section,
 #continut-divers {
@@ -141,9 +132,7 @@ main {
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 #sectiune-tabel {
-
     overflow-x: auto;
     padding: 10px;
 }
@@ -151,14 +140,12 @@ main {
 #sectiune-tabel table {
     width: 100%;
     border-collapse: separate;
-
     border-spacing: 2px;
     border: 1px solid var(--clr-border);
     background-color: white;
 }
 
 #sectiune-tabel caption {
-
     caption-side: bottom;
     padding: 10px;
     font-style: italic;
@@ -172,12 +159,10 @@ main {
     text-align: center;
 }
 
-
 #sectiune-tabel thead tr {
     background-color: var(--clr-border);
     color: white;
 }
-
 
 #sectiune-tabel tbody tr:nth-child(even) {
     background-color: var(--clr-highlight);
@@ -186,7 +171,6 @@ main {
 #sectiune-tabel tbody tr:nth-child(odd) {
     background-color: rgba(255, 255, 255, 0.9);
 }
-
 
 #sectiune-tabel tbody tr {
     transition: background-color 0.4s ease;
@@ -197,12 +181,10 @@ main {
     cursor: pointer;
 }
 
-
 #sectiune-tabel tfoot tr {
     background-color: var(--clr-nature);
     font-weight: bold;
 }
-
 
 img {
     width: 85%;
@@ -223,29 +205,21 @@ img {
     border: 1px solid var(--clr-border);
 }
 
-
 #zoom-imagine-header a {
     cursor: zoom-in;
 }
 
-
 iframe {
-
     width: 95%;
     max-width: 850px;
     min-width: 280px;
-
-
     aspect-ratio: 16 / 9;
-
-
     display: block;
     margin: 30px auto;
     border-radius: 12px;
     border: 2px solid var(--clr-border);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
 }
-
 
 @media screen and (max-width: 1200px) {
     body {
@@ -267,7 +241,6 @@ iframe {
         width: 100%;
     }
 }
-
 
 @media screen and (max-width: 700px) {
     body {
@@ -297,8 +270,6 @@ iframe {
     }
 }
 
-
-
 .fa-solid,
 .fas {
     font-family: "Font Awesome 6 Free" !important;
@@ -306,7 +277,6 @@ iframe {
     display: inline-block;
     color: var(--clr-border);
 }
-
 
 .fa-fish-fins {
     color: #004d40 !important;
@@ -322,8 +292,6 @@ h3 {
     font-size: 2rem;
 }
 
-
-
 .container-iframe {
     display: flex;
     flex-direction: column;
@@ -332,7 +300,6 @@ h3 {
 }
 
 .container-iframe iframe {
-
     margin-bottom: 0 !important;
     border-bottom: none;
     border-bottom-left-radius: 0;
@@ -342,13 +309,14 @@ h3 {
 
 .taburi-iframe {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     width: 95%;
     max-width: 850px;
 }
 
 .taburi-iframe a {
-
+    white-space: nowrap;
+    padding: 0;
     display: block;
     width: 180px;
     height: 50px;
@@ -365,7 +333,7 @@ h3 {
 
     margin: 0 5px;
     font-weight: bold;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     transition: all 0.3s ease;
 }
 
@@ -389,7 +357,6 @@ h3 {
     z-index: 1000;
 }
 
-
 #cerc-rotire {
     position: absolute;
     width: 100%;
@@ -397,16 +364,11 @@ h3 {
     border-radius: 50%;
     border: 3px dashed var(--clr-text);
     box-sizing: border-box;
-
-
     background: linear-gradient(var(--clr-border),
             var(--clr-highlight),
             var(--clr-border));
-
-
     transition: transform 0.6s ease-in-out;
 }
-
 
 #sageata-top {
     position: absolute;
@@ -419,16 +381,13 @@ h3 {
     pointer-events: none;
 }
 
-
 #link-top:hover {
     opacity: 1;
 }
 
 #link-top:hover #cerc-rotire {
-
     transform: rotate(360deg);
 }
-
 
 #prezentare {
     grid-area: z1;
@@ -464,49 +423,42 @@ h3 {
 }
 
 math {
-    
     margin: 2rem auto;
     padding: 1.5rem;
-    background-color: rgba(255, 255, 255, 0.5); 
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
-    font-size: 1.4rem; 
+    font-size: 1.4rem;
 }
-
 
 math mi {
-    color: var(--clr-border); 
+    color: var(--clr-border);
     font-weight: bold;
-    font-style: italic; 
+    font-style: italic;
 }
 
-
 math mtext {
-    color: #444; 
-    font-size: 0.75rem; 
+    color: #444;
+    font-size: 0.75rem;
     font-weight: normal;
     font-family: 'Open Sans', sans-serif;
 }
 
-
 math mo {
-    color: var(--clr-accent); 
+    color: var(--clr-accent);
     font-weight: bold;
     padding: 0 5px;
 }
 
-
 math msub:nth-child(1) mi {
-    color: #d32f2f; 
+    color: #d32f2f;
 }
-
 
 math mfrac {
     padding: 5px;
 }
 
-
-#watermark-print, #banner-proiect { 
+#watermark-print, #banner-proiect {
     display: none;
 }
 
@@ -514,7 +466,7 @@ math mfrac {
     display: flex;
     flex-wrap: wrap;
     gap: var(--grid-gap);
-    grid-template-columns: none;  
+    grid-template-columns: none;
     grid-template-areas: none;
 }
 
@@ -525,10 +477,11 @@ math mfrac {
 
 #video-promo {
     width: 100%;
-    max-width: 100%; 
-    aspect-ratio: 16 / 9; 
-    object-fit: contain; 
-    background-color: black; 
+    max-width: 100%;
+    min-width: 80%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background-color: black;
     display: block;
     margin: 0 auto;
     border-radius: 12px;
@@ -536,12 +489,9 @@ math mfrac {
 }
 
 video::cue {
-    background-color: rgba(10, 25, 50, 0.9); 
-    
+    background-color: rgba(10, 25, 50, 0.9);
     color: #ffffff;
-    
     text-shadow: 1px 1px 2px black;
-    
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -550,17 +500,19 @@ video::cue {
     flex-wrap: wrap;
     gap: 15px;
 }
+
 .galerie-blog figure {
     flex: 1 1 30%;
     min-width: 250px;
     margin: 0;
 }
 
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 700px) {
     #grid-pagina.layout-blog {
         flex-direction: column;
     }
-    
+
     .articol-blog, #sectiune-video-local {
         width: 100%;
         flex: 1 1 auto;
@@ -592,7 +544,6 @@ video::cue {
         display: none !important;
     }
 
-
     a { text-decoration: none !important; }
     h1 { text-align: center; margin-bottom: 20px; }
 
@@ -616,7 +567,7 @@ video::cue {
         display: block !important;
         position: fixed;
         bottom: 3cm;
-        right: 0.5cm;
+        right: 0.1cm;
         width: 4cm;
         height: 1cm;
         border: 3px solid black !important;
@@ -624,7 +575,7 @@ video::cue {
         text-align: center;
         font-weight: bold;
         opacity: 0.4;
-        line-height: 0.5cm;
+        line-height: 0.40cm;
         z-index: 9999;
         background: white !important;
     }
