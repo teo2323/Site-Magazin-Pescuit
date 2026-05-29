@@ -36,9 +36,12 @@
                     <span class="text-item">Produse</span>
                 </div>
                 <ul>
-                    <li><a href="/produse">Toate Produsele</a></li>
-                    <li><a href="/lansete">Lansete Spinning</a></li>
-                    <li><a href="/mulinete">Mulinete Casting</a></li>
+                    <li><a href="/produse?tip=toate">toate</a></li>
+                    <% if (locals.categorii) { %>
+                        <% locals.categorii.forEach(function(categorie) { %>
+                            <li><a href="/produse?tip=<%- categorie %>"><%- categorie %></a></li>
+                        <% }); %>
+                    <% } %>
                 </ul>
             </li>
             <li>
@@ -69,6 +72,14 @@
                     <i class="fa-solid fa-newspaper"></i>
                     <span class="text-item">Blog</span>
                 </a>
+            </li>
+            <li class="d-flex align-items-center px-3" style="cursor: pointer;">
+                <div class="form-check form-switch d-flex align-items-center m-0 p-0">
+                    <label class="form-check-label me-2 mb-0" for="btn-schimba-tema">
+                        <i id="icon-tema" class="fa-solid fa-sun" style="font-size: 1.2rem;"></i>
+                    </label>
+                    <input class="form-check-input m-0" type="checkbox" role="switch" id="btn-schimba-tema" style="cursor: pointer; transform: scale(1.2);">
+                </div>
             </li>
         </ul>
     </nav>

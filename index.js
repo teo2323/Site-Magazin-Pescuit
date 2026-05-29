@@ -7,7 +7,25 @@ global.folderCss = path.join(__dirname, "resurse/css");
 
 const sass = require('sass'); 
 
+const { Pool } = require('pg');
 
+
+const pool = new Pool({
+    user: 'teo_admin',
+    host: 'localhost',
+    database: 'magazin_pescuit',
+    password: 'admin01',
+    port: 5432,
+});
+
+
+pool.connect((err, client, release) => {
+    if (err) {
+        return console.error('Eroare la conectarea catre PostgreSQL:', err.stack);
+    }
+    console.log('Conexiunea la baza de date PostgreSQL s-a realizat cu succes!');
+    release();
+});
 
  
 function compileazaScss(caleScss, caleCss) {
@@ -193,7 +211,6 @@ app.get("/favicon.ico", (req, res) => {
 
 
 app.get(["/", "/index", "/home"], (req, res) => {
-    // let dataTest = new Date("2026-01-15"); 
     let dataCurenta = new Date(); 
     let anotimpCurent = getAnotimp(dataCurenta);
 
@@ -210,6 +227,45 @@ app.get(["/", "/index", "/home"], (req, res) => {
 
 app.get(/\.ejs$/, (req, res) => {
     afisareEroare(res, 400);
+});
+
+app.get("/produse", async (req, res) => {
+    try {
+        const enumResult = await pool.query("SELECT unnest(enum_range(NULL::tip_echipament)) AS categorie");
+        const categorii = enumResult.rows.map(row => row.categorie);
+
+        const tipParam = req.query.tip;
+        let produseResult;
+
+        if (tipParam && tipParam !== 'toate') {
+            produseResult = await pool.query('SELECT * FROM produse WHERE categorie_mare = $1', [tipParam]);
+        } else {
+            produseResult = await pool.query('SELECT * FROM produse');
+        }
+
+        res.render('pagini/produse', { 
+            produse: produseResult.rows, 
+            categorii: categorii, 
+            ip: req.ip 
+        });
+    } catch (err) {
+        console.error('Eroare la extragerea produselor:', err);
+        afisareEroare(res, 500, "Eroare baza de date", "A apărut o eroare la interogarea produselor.");
+    }
+});
+
+app.get("/produs/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const result = await pool.query('SELECT * FROM produse WHERE id = $1', [id]);
+        if (result.rows.length === 0) {
+            return afisareEroare(res, 404, "Produs inexistent", "Produsul cerut nu a fost găsit.");
+        }
+        res.render('pagini/produs', { produs: result.rows[0], ip: req.ip });
+    } catch (err) {
+        console.error('Eroare la extragerea produsului:', err);
+        afisareEroare(res, 500, "Eroare baza de date", "A apărut o eroare la interogarea produsului.");
+    }
 });
 
 app.get("/:nume_pagina", (req, res) => {

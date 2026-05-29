@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include('../fragmente/head') %>
+    <title><%- locals.produs.nume %></title>
+    <style>
+        .produs-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px;
+            color: #333;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .detalii-produs ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .detalii-produs li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .img-produs {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <%- include('../fragmente/header') %>
+
+    <main>
+        <h1 style="text-align: center; color: white;"><%- locals.produs.nume %></h1>
+        
+        <% 
+        function formateazaData(dataStr) {
+            if (!dataStr) return '';
+            const data = new Date(dataStr);
+            const zile = ['Duminica', 'Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata'];
+            const luni = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
+            
+            const ziSapt = zile[data.getDay()];
+            const zi = data.getDate();
+            const luna = luni[data.getMonth()];
+            const an = data.getFullYear();
+            
+            return `${ziSapt}, ${zi}-${luna}-${an}`;
+        }
+        %>
+
+        <article id="articol_<%- locals.produs.id %>" class="produs-container">
+            <% if (locals.produs.imagine != null) { %>
+                <div style="text-align: center;">
+                    <img src="<%- locals.produs.imagine %>" alt="Imagine <%- locals.produs.nume %>" class="img-produs">
+                </div>
+            <% } %>
+
+            <div class="detalii-produs">
+                <h2>Specificații Detaliate</h2>
+                <ul>
+                    <% 
+                    const keysDeEvitat = ['imagine']; 
+                    
+                    for (let key in locals.produs) { 
+                        let valoare = locals.produs[key];
+                        
+                        if (valoare !== null && valoare !== undefined && !keysDeEvitat.includes(key)) {
+                            
+                            let label = key.replace(/_/g, ' ');
+                            label = label.charAt(0).toUpperCase() + label.slice(1);
+                    %>
+                            <li>
+                                <strong><%- label %>:</strong> 
+                                <% if (key === 'data_adaugare') { %>
+                                    <time datetime="<%- new Date(valoare).toISOString() %>"><%- formateazaData(valoare) %></time>
+                                <% } else if (typeof valoare === 'boolean' || key === 'este_in_promotie') { %>
+                                    <%- valoare ? 'Da' : 'Nu' %>
+                                <% } else { %>
+                                    <%- valoare %>
+                                <% } %>
+                            </li>
+                    <% 
+                        } 
+                    } 
+                    %>
+                </ul>
+            </div>
+        </article>
+    </main>
+
+    <%- include('../fragmente/footer') %>
+</body>
+</html>

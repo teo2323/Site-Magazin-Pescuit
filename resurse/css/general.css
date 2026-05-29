@@ -25,6 +25,15 @@ body {
     --clr-nature: #4CE689;
     --clr-visited: #8b4ce6;
 
+    --bg-card: #ffffff;
+    --text-main: #333333;
+    --text-h2: #333333;
+    --text-muted: #666666;
+    --bg-card-alt: #f9f9f9;
+    --border-alt: #eeeeee;
+    --bg-filter: #f1f1f1;
+    --bg-sectiune: rgba(255, 255, 255, 0.7);
+
     --margine-laterala: 100px;
 
     --grid-gap: 20px;
@@ -36,6 +45,26 @@ body {
     font-family: 'Open Sans', sans-serif;
 
     margin: 0;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.dark-theme {
+    --clr-background: #121212;
+    --clr-text: #e0e0e0;
+    --clr-border: #fde100; /* Galben pentru border/text accentuat */
+    --clr-highlight: #ffe082; /* Galben spălăcit pentru hover/highlight */
+    --clr-accent: #333333; /* Gri închis pentru headere ca să nu fie țipătoare */
+    --clr-nature: #424242; /* Gri pentru main content, să contrasteze frumos */
+    --clr-visited: #ffd54f; /* Galben spălăcit */
+
+    --bg-card: #1e1e1e;
+    --text-main: #e0e0e0;
+    --text-h2: #fde100; /* Galben pentru subtitluri (inclusiv titluri filtre) */
+    --text-muted: #aaaaaa;
+    --bg-card-alt: #2a2a2a;
+    --border-alt: #424242;
+    --bg-filter: #1e1e1e;
+    --bg-sectiune: rgba(15, 15, 15, 0.9);
 }
 
 a:active {
@@ -125,7 +154,7 @@ main {
 
 #grid-pagina>section,
 #continut-divers {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: var(--bg-sectiune);
     border: 1px solid var(--clr-border);
     border-radius: 12px;
     padding: var(--zona-padding);

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include('../fragmente/head') %>
+    <title>Produse</title>
+    <style>
+        .produse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .produse-grid article {
+            border: 1px solid var(--border-alt, #ccc);
+            border-radius: 8px;
+            padding: 15px;
+            background-color: var(--bg-card, #fff);
+            color: var(--text-main, #333);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .produse-grid article h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: var(--text-h2, #333);
+        }
+
+        .produse-grid article .categorie {
+            font-style: italic;
+            color: var(--text-muted, #666);
+            margin-bottom: 10px;
+        }
+
+        .descriere-si-imagine {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .descriere-si-imagine p {
+            flex: 1;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .descriere-si-imagine img {
+            width: 100px;
+            height: 100px;
+            border-radius: 4px;
+            object-fit: cover; /* Asigură că toate au exact aceeași dimensiune indiferent de proporții */
+        }
+
+        .caracteristici-produs {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+            font-size: 0.9rem;
+            background-color: var(--bg-card-alt, #f9f9f9);
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        .caracteristici-produs li {
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--border-alt, #eee);
+        }
+
+        .caracteristici-produs li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        h1.titlu-produse {
+            text-align: center;
+            margin-top: 20px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .btn-detalii {
+            display: block;
+            padding: 8px 16px;
+            background-color: #1eb113;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .btn-detalii:hover {
+            background-color: #168a0e;
+            color: white;
+        }
+        .filtre-container {
+            background-color: var(--bg-filter, #f1f1f1);
+            color: var(--text-main, #333);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .filtre-container h2 {
+            margin-top: 0;
+            color: var(--text-h2, #333);
+            margin-bottom: 20px;
+        }
+
+        .filtru-invizibil {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <%- include('../fragmente/header') %>
+
+    <main>
+        <h1 class="titlu-produse">Produse</h1>
+        
+        <section id="filtre" class="filtre-container container">
+            <h2>Filtrare Produse</h2>
+            <div class="row g-3">
+                <!-- a) input text + datalist -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex flex-column mb-3">
+                    <label for="inp-nume" class="form-label fw-bold">Nume / Marca:</label>
+                    <input type="text" id="inp-nume" class="form-control" list="lista-nume" placeholder="Caută (ex: Daiwa)...">
+                    <datalist id="lista-nume">
+                        <option value="Daiwa">
+                        <option value="Shimano">
+                        <option value="Rapala">
+                        <option value="Savage Gear">
+                    </datalist>
+                </div>
+
+                <!-- e) textarea descriere +/- -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex flex-column mb-3">
+                    <div class="form-floating">
+                        <textarea id="inp-descriere" class="form-control" placeholder="Ex: +vobler -stiuca" style="height: 58px"></textarea>
+                        <label for="inp-descriere" class="fw-bold">Cuvinte cheie (+/-):</label>
+                    </div>
+                </div>
+
+                <!-- b) range cu min stanga, max dreapta + valoare selectata -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex flex-column mb-3">
+                    <label for="inp-dd" class="form-label fw-bold">Adâncime maximă scufundare (Năluci):</label>
+                    <div class="d-flex align-items-center gap-2">
+                        <span id="dd-min">0</span>
+                        <input type="range" id="inp-dd" class="form-range" min="0" max="10" value="10" step="0.1">
+                        <span id="dd-max">10 (<span id="dd-curent">Toate</span>)</span>
+                    </div>
+                </div>
+
+                <!-- f) select simplu (marca sau categorie_mare) -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex flex-column mb-3">
+                    <label for="inp-categorie" class="form-label fw-bold">Categorie principală:</label>
+                    <select id="inp-categorie" class="form-select">
+                        <option value="toate" selected>Oricare</option>
+                        <option value="Lanseta">Lanseta</option>
+                        <option value="Mulineta">Mulineta</option>
+                        <option value="Naluca">Naluca</option>
+                        <option value="Fir">Fir</option>
+                        <option value="Accesoriu">Accesoriu</option>
+                    </select>
+                </div>
+
+                <!-- d) select multiplu (pret intervale) -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex flex-column mb-3">
+                    <label for="inp-pret" class="form-label fw-bold">Preț (ține apăsat Ctrl):</label>
+                    <select id="inp-pret" class="form-select" multiple size="4">
+                        <option value="0-50">0 - 50 RON</option>
+                        <option value="50-100">50 - 100 RON</option>
+                        <option value="100-200">100 - 200 RON</option>
+                        <option value="200-500">200 - 500 RON</option>
+                        <option value="500-100000">Peste 500 RON</option>
+                    </select>
+                </div>
+
+                <!-- c) radio buttons pentru subcategorie (tip_pescuit) -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex flex-column mb-3">
+                    <label class="form-label d-block fw-bold">Tip pescuit (Subcategorie):</label>
+                    <div class="radio-group rounded">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gr_radio" id="radio-orice" value="toate" checked>
+                            <label class="form-check-label" for="radio-orice">Orice tip</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gr_radio" id="radio-spin" value="Spinning">
+                            <label class="form-check-label" for="radio-spin">Spinning</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gr_radio" id="radio-bait" value="Baitcasting">
+                            <label class="form-check-label" for="radio-bait">Baitcasting</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gr_radio" id="radio-uni" value="Universal">
+                            <label class="form-check-label" for="radio-uni">Universal</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gr_radio" id="radio-feed" value="Feeder">
+                            <label class="form-check-label" for="radio-feed">Feeder</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gr_radio" id="radio-crap" value="Crap">
+                            <label class="form-check-label" for="radio-crap">Crap</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gr_radio" id="radio-stat" value="Stationar">
+                            <label class="form-check-label" for="radio-stat">Stationar</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- d) checkbox group / checkbox -->
+                <div class="col-12 mb-3">
+                    <label class="form-label d-block fw-bold">Caracteristici speciale:</label>
+                    <div>
+                        <input type="checkbox" class="btn-check" id="inp-promotie" value="1" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="inp-promotie">Doar produse în promoție</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2 flex-wrap mt-3">
+                <button id="btn-filtrare" class="btn btn-primary"><i class="bi bi-funnel-fill"></i> <span class="d-none d-sm-inline">Filtrează</span></button>
+                <button id="btn-reset" class="btn btn-secondary"><i class="bi bi-arrow-counterclockwise"></i> <span class="d-none d-sm-inline">Resetează</span></button>
+                <button id="btn-sort-asc" class="btn btn-secondary"><i class="bi bi-sort-alpha-down"></i> <span class="d-none d-sm-inline">Sortează Crescător (Preț/Greutate)</span></button>
+                <button id="btn-sort-desc" class="btn btn-secondary"><i class="bi bi-sort-alpha-up-alt"></i> <span class="d-none d-sm-inline">Sortează Descrescător (Preț/Greutate)</span></button>
+                <button id="btn-calc" class="btn btn-info"><i class="bi bi-calculator-fill"></i> <span class="d-none d-sm-inline">Calculează suma prețurilor (Alt+C)</span></button>
+            </div>
+        </section>
+
+        <% 
+        function formateazaData(dataStr) {
+            if (!dataStr) return 'N/A';
+            const data = new Date(dataStr);
+            const zile = ['Duminica', 'Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata'];
+            const luni = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
+            
+            const ziSapt = zile[data.getDay()];
+            const zi = data.getDate();
+            const luna = luni[data.getMonth()];
+            const an = data.getFullYear();
+            
+            return `${ziSapt}, ${zi}-${luna}-${an}`;
+        }
+        %>
+
+        <div class="produse-grid">
+            <% if (locals.produse && locals.produse.length > 0) { %>
+                <% for (let i = 0; i < locals.produse.length; i++) { 
+                    let produs = locals.produse[i];
+                %>
+                    <article id="articol_<%- produs.id %>" class="produs <%- produs.categorie_mare %>"
+                        data-nume="<%- produs.nume.toLowerCase() %>"
+                        data-marca="<%- produs.marca ? produs.marca.toLowerCase() : '' %>"
+                        data-pret="<%- produs.pret %>"
+                        data-greutate="<%- produs.greutate_grame %>"
+                        data-categorie="<%- produs.categorie_mare %>"
+                        data-subcategorie="<%- produs.tip_pescuit %>"
+                        data-culoare="<%- produs.culoare %>"
+                        data-promotie="<%- produs.este_in_promotie %>"
+                        data-descriere="<%- produs.descriere.toLowerCase() %>"
+                        data-dd="<%- produs.dd_maxim != null ? produs.dd_maxim : '' %>">
+                        
+                        <h2><%- produs.nume %></h2>
+                        <div class="categorie"><%- produs.categorie_mare %> - <%- produs.tip_pescuit %></div>
+                        
+                        <div class="descriere-si-imagine">
+                            <p><%- produs.descriere || 'Fără descriere' %></p>
+                            <% if (produs.imagine) { %>
+                                <img src="<%- produs.imagine %>" alt="Imagine <%- produs.nume %>">
+                            <% } %>
+                        </div>
+                        
+                        <ul class="caracteristici-produs">
+                            <li><strong>Marca:</strong> <%- produs.marca || 'N/A' %></li>
+                            <li><strong>Preț:</strong> <%- produs.pret %> RON</li>
+                            <li><strong>Greutate:</strong> <%- produs.greutate_grame || 'N/A' %> g</li>
+                            <li><strong>Culoare:</strong> <%- produs.culoare || 'N/A' %></li>
+                            <% if (produs.dd_maxim != null) { %>
+                                <li><strong>Adâncime scufundare max:</strong> <%- produs.dd_maxim %> m</li>
+                            <% } %>
+                            <li><strong>Specii țintă:</strong> <%- produs.specii_tinta || 'N/A' %></li>
+                            <li><strong>Data adăugare:</strong> <time datetime="<%- produs.data_adaugare ? new Date(produs.data_adaugare).toISOString() : '' %>"><%- formateazaData(produs.data_adaugare) %></time></li>
+                            <li><strong>În promoție:</strong> <%- produs.este_in_promotie ? 'Da' : 'Nu' %></li>
+                        </ul>
+                        
+                        <a href="/produs/<%- produs.id %>" class="btn-detalii">Vezi detalii complete</a>
+                    </article>
+                <% } %>
+            <% } else { %>
+                <p style="color: white; padding: 20px;">Nu există produse de afișat în această categorie.</p>
+            <% } %>
+        </div>
+    </main>
+
+    <%- include('../fragmente/footer') %>
+    <script src="/resurse/js/script_filtrare.js"></script>
+</body>
+</html>
