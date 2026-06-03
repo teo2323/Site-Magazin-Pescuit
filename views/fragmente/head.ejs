@@ -25,48 +25,13 @@
 
 <script>
     (function() {
-        const temaSalvata = localStorage.getItem('tema');
-        if (temaSalvata === 'dark') {
-            document.documentElement.classList.add('dark-theme');
-            document.body && document.body.classList.add('dark-theme');
+        // Aplicare imediată pentru a preveni FOUC
+        const temaSalvata = localStorage.getItem('tema_aleasa') || 'light';
+        if (temaSalvata !== 'light') {
+            document.documentElement.classList.add(temaSalvata);
+            if (temaSalvata === 'dark-theme') document.documentElement.setAttribute('data-bs-theme', 'dark');
+            if (document.body) document.body.classList.add(temaSalvata);
         }
-
-        window.addEventListener('DOMContentLoaded', (event) => {
-            if (temaSalvata === 'dark') {
-                document.body.classList.add('dark-theme');
-                document.documentElement.setAttribute('data-bs-theme', 'dark');
-                const switchTema = document.getElementById('btn-schimba-tema');
-                const iconTema = document.getElementById('icon-tema');
-                if (switchTema) switchTema.checked = true;
-                if (iconTema) {
-                    iconTema.classList.remove('fa-sun');
-                    iconTema.classList.add('fa-moon');
-                }
-            }
-
-            const btnSwitch = document.getElementById('btn-schimba-tema');
-            if (btnSwitch) {
-                btnSwitch.addEventListener('change', function() {
-                    const icon = document.getElementById('icon-tema');
-                    if (this.checked) {
-                        document.body.classList.add('dark-theme');
-                        document.documentElement.setAttribute('data-bs-theme', 'dark');
-                        localStorage.setItem('tema', 'dark');
-                        if (icon) {
-                            icon.classList.remove('fa-sun');
-                            icon.classList.add('fa-moon');
-                        }
-                    } else {
-                        document.body.classList.remove('dark-theme');
-                        document.documentElement.removeAttribute('data-bs-theme');
-                        localStorage.setItem('tema', 'light');
-                        if (icon) {
-                            icon.classList.remove('fa-moon');
-                            icon.classList.add('fa-sun');
-                        }
-                    }
-                });
-            }
-        });
     })();
 </script>
+<script src="/resurse/js/tema.js"></script>

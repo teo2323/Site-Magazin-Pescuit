@@ -243,9 +243,29 @@ app.get("/produse", async (req, res) => {
             produseResult = await pool.query('SELECT * FROM produse');
         }
 
+        const marciResult = await pool.query("SELECT DISTINCT marca FROM produse WHERE marca IS NOT NULL ORDER BY marca");
+        const marci = marciResult.rows.map(row => row.marca);
+
+        const subcatResult = await pool.query("SELECT DISTINCT tip_pescuit FROM produse WHERE tip_pescuit IS NOT NULL ORDER BY tip_pescuit");
+        const subcategorii = subcatResult.rows.map(row => row.tip_pescuit);
+
+        const ddResult = await pool.query("SELECT MIN(dd_maxim) as min_dd, MAX(dd_maxim) as max_dd FROM produse");
+        const minDd = ddResult.rows[0].min_dd !== null ? parseFloat(ddResult.rows[0].min_dd) : 0;
+        const maxDd = ddResult.rows[0].max_dd !== null ? parseFloat(ddResult.rows[0].max_dd) : 0;
+
+        const pretResult = await pool.query("SELECT MIN(pret) as min_pret, MAX(pret) as max_pret FROM produse");
+        const minPret = pretResult.rows[0].min_pret !== null ? parseFloat(pretResult.rows[0].min_pret) : 0;
+        const maxPret = pretResult.rows[0].max_pret !== null ? parseFloat(pretResult.rows[0].max_pret) : 0;
+
         res.render('pagini/produse', { 
             produse: produseResult.rows, 
             categorii: categorii, 
+            subcategorii: subcategorii,
+            marci: marci,
+            minPret: minPret,
+            maxPret: maxPret,
+            minDd: minDd,
+            maxDd: maxDd,
             ip: req.ip 
         });
     } catch (err) {
@@ -307,4 +327,3 @@ fs.watch(global.folderScss, (eventType, filename) => {
         }
     }
 });
-

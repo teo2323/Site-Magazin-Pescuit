@@ -51,20 +51,56 @@ body {
 body.dark-theme {
     --clr-background: #121212;
     --clr-text: #e0e0e0;
-    --clr-border: #fde100; /* Galben pentru border/text accentuat */
-    --clr-highlight: #ffe082; /* Galben spălăcit pentru hover/highlight */
-    --clr-accent: #333333; /* Gri închis pentru headere ca să nu fie țipătoare */
-    --clr-nature: #424242; /* Gri pentru main content, să contrasteze frumos */
-    --clr-visited: #ffd54f; /* Galben spălăcit */
+    --clr-border: #fde100; 
+    --clr-highlight: #ffe082; 
+    --clr-accent: #333333; 
+    --clr-nature: #424242; 
+    --clr-visited: #ffd54f; 
 
     --bg-card: #1e1e1e;
     --text-main: #e0e0e0;
-    --text-h2: #fde100; /* Galben pentru subtitluri (inclusiv titluri filtre) */
+    --text-h2: #fde100; 
     --text-muted: #aaaaaa;
     --bg-card-alt: #2a2a2a;
     --border-alt: #424242;
     --bg-filter: #1e1e1e;
     --bg-sectiune: rgba(15, 15, 15, 0.9);
+}
+
+body.ocean-theme {
+    --clr-background: #002b36;
+    --clr-text: #e0f2f1;
+    --clr-border: #00bfa5;
+    --clr-highlight: #00897b;
+    --clr-accent: #00695c;
+    --clr-nature: #004d40;
+    --clr-visited: #80cbc4;
+    --bg-card: #003d4c;
+    --text-main: #e0f2f1;
+    --text-h2: #64ffda;
+    --text-muted: #b2dfdb;
+    --bg-card-alt: #004d40;
+    --border-alt: #00695c;
+    --bg-filter: #003d4c;
+    --bg-sectiune: rgba(0, 43, 54, 0.85);
+}
+
+body.forest-theme {
+    --clr-background: #1b5e20;
+    --clr-text: #f1f8e9;
+    --clr-border: #8bc34a;
+    --clr-highlight: #689f38;
+    --clr-accent: #558b2f;
+    --clr-nature: #33691e;
+    --clr-visited: #aed581;
+    --bg-card: #2e7d32;
+    --text-main: #f1f8e9;
+    --text-h2: #cddc39;
+    --text-muted: #dcedc8;
+    --bg-card-alt: #388e3c;
+    --border-alt: #558b2f;
+    --bg-filter: #2e7d32;
+    --bg-sectiune: rgba(27, 94, 32, 0.85);
 }
 
 a:active {

@@ -24,7 +24,9 @@
             border-bottom: 1px solid #eee;
         }
         .img-produs {
-            max-width: 100%;
+            width: auto; 
+            max-width: 100%; 
+            min-width: 0; 
             height: auto;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -56,7 +58,7 @@
         <article id="articol_<%- locals.produs.id %>" class="produs-container">
             <% if (locals.produs.imagine != null) { %>
                 <div style="text-align: center;">
-                    <img src="<%- locals.produs.imagine %>" alt="Imagine <%- locals.produs.nume %>" class="img-produs">
+                    <img src="/resurse<%- locals.produs.imagine %>" alt="Imagine <%- locals.produs.nume %>" class="img-produs">
                 </div>
             <% } %>
 
